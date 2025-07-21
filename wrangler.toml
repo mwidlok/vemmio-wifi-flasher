@@ -1,0 +1,4 @@
+name = "vemmio-flasher-worker"
+main = "worker/index.ts"
+compatibility_date = "2025-07-15"
+compatibility_flags = ["nodejs_compat"]
