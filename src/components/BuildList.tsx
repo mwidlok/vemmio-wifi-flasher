@@ -18,11 +18,13 @@ export default function BuildList({ builds }: Props) {
             </thead>
             <tbody>
             {builds.map((b) => (
-                <tr key={b.version} className="border-b border-slate-800">
+                <tr key={b.version} className="group border-b border-slate-800">
                     <td className="py-2 font-mono">{b.version}</td>
                     <td className="py-2">{b.stage}</td>
                     <td className="py-2 text-right">
-                        <FlashDialog build={b} />
+                        <div className="invisible group-hover:visible">
+                            <FlashDialog build={b} />
+                        </div>
                     </td>
                 </tr>
             ))}
