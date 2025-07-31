@@ -10,7 +10,7 @@ export default function BuildList({ builds }: Props) {
     return (
         <table className="w-full text-left mt-4">
             <thead>
-            <tr className="border-b border-slate-700">
+            <tr className="border-b border-gray-300">
                 <th className="py-2">Wersja</th>
                 <th className="py-2">Stage</th>
                 <th className="py-2" />
@@ -18,7 +18,7 @@ export default function BuildList({ builds }: Props) {
             </thead>
             <tbody>
             {builds.map((b) => (
-                <tr key={b.version} className="group border-b border-slate-800">
+                <tr key={b.version} className="group border-b border-gray-200">
                     <td className="py-2 font-mono">{b.version}</td>
                     <td className="py-2">{b.stage}</td>
                     <td className="py-2 text-right">

@@ -117,7 +117,7 @@ export function FlashDialog({ build }: Props) {
 
       {open && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-10">
-          <div className="bg-slate-800 p-4 rounded w-96">
+          <div className="bg-white text-slate-900 p-4 rounded w-96">
             <div className="flex justify-between items-center mb-2">
               <h2 className="font-bold">Flash {build.version}</h2>
               <button onClick={closeDialog}>&times;</button>
@@ -136,7 +136,7 @@ export function FlashDialog({ build }: Props) {
             )}
 
             {log.length > 0 && (
-              <pre className="mt-2 p-2 bg-slate-900 text-xs max-h-48 overflow-auto rounded">
+              <pre className="mt-2 p-2 bg-gray-200 text-xs max-h-48 overflow-auto rounded">
                 {log.join("\n")}
               </pre>
             )}

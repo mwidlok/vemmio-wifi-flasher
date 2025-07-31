@@ -37,7 +37,7 @@ export default function Home() {
         <label className="text-sm">
           Device:
           <select
-            className="ml-2 bg-slate-800 border border-slate-700 rounded px-2 py-1"
+            className="ml-2 bg-white border border-gray-300 rounded px-2 py-1"
             value={device}
             onChange={(e) => setDevice(e.target.value)}
           >
@@ -51,7 +51,7 @@ export default function Home() {
         <label className="text-sm">
           Stage:
           <select
-            className="ml-2 bg-slate-800 border border-slate-700 rounded px-2 py-1"
+            className="ml-2 bg-white border border-gray-300 rounded px-2 py-1"
             value={stage}
             onChange={(e) => setStage(e.target.value)}
           >
