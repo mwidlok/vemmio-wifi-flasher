@@ -27,14 +27,14 @@ export default function Login() {
     >
       <h1 className="text-2xl font-bold text-center">Logowanie</h1>
       <input
-        className="px-3 py-2 rounded bg-slate-800"
+        className="px-3 py-2 rounded bg-white border border-gray-300"
         placeholder="Użytkownik"
         value={user}
         onChange={(e) => setUser(e.target.value)}
       />
       <input
         type="password"
-        className="px-3 py-2 rounded bg-slate-800"
+        className="px-3 py-2 rounded bg-white border border-gray-300"
         placeholder="Hasło"
         value={pass}
         onChange={(e) => setPass(e.target.value)}

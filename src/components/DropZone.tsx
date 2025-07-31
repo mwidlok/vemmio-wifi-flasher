@@ -61,7 +61,7 @@ export default function DropZone() {
       <div
           {...getRootProps()}
           className={`mt-8 p-6 border-2 rounded-lg border-dashed ${
-              isDragActive ? "border-indigo-500" : "border-slate-500"
+              isDragActive ? "border-indigo-500" : "border-gray-500"
           }`}
       >
         <input {...getInputProps()} />
@@ -71,7 +71,7 @@ export default function DropZone() {
             <p>Przeciągnij ZIP z firmware lub kliknij by wybrać.</p>
         )}
         {log.length > 0 && (
-            <pre className="mt-4 text-xs max-h-48 overflow-auto">{log.join("\n")}</pre>
+            <pre className="mt-4 text-xs max-h-48 overflow-auto bg-gray-200 p-2 rounded">{log.join("\n")}</pre>
         )}
       </div>
   );
