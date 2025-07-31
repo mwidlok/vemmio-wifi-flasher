@@ -14,6 +14,7 @@ type Phase = "idle" | "preparing" | "ready";
 
 export function FlashDialog({ build }: Props) {
   const [phase, setPhase] = useState<Phase>("idle");
+  const [open, setOpen] = useState(false);
   const [manifestUrl, setManifestUrl] = useState<string | null>(null);
   const [log, setLog] = useState<string[]>([]);
 
@@ -84,7 +85,7 @@ export function FlashDialog({ build }: Props) {
       const url = await buildManifestUrl();
       setManifestUrl(url);
       setPhase("ready");
-      setLog(["Manifest prepared. Click 'Flash' to start."]);
+      setLog(["Manifest prepared. Connect device to flash."]);
     } catch (err) {
       setLog((l) => [...l, `❌ Error: ${String(err)}`]);
       console.error(err);
@@ -92,40 +93,56 @@ export function FlashDialog({ build }: Props) {
     }
   }
 
-  // Render
-  if (phase === "ready" && manifestUrl) {
-    // Show native ESP Web Tools button; slot text → our UI
-    return (
-        <>
-          <esp-web-install-button manifest={manifestUrl}>
-            <button className="px-4 py-1 rounded bg-indigo-600 hover:bg-indigo-700">
-              Flash {build.version}
-            </button>
-          </esp-web-install-button>
-          {log.length > 0 && (
-              <pre className="mt-2 p-2 bg-slate-900 text-xs max-h-48 overflow-auto rounded">
-            {log.join("\n")}
-          </pre>
-          )}
-        </>
-    );
+  function openDialog() {
+    setOpen(true);
+    prepare();
   }
 
-  // idle / preparing
+  function closeDialog() {
+    setOpen(false);
+    setPhase("idle");
+    setManifestUrl(null);
+  }
+
+  // Render
   return (
-      <>
-        <button
-            disabled={phase === "preparing"}
-            className="px-4 py-1 rounded bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50"
-            onClick={prepare}
-        >
-          {phase === "preparing" ? <Spinner /> : "Prepare & Flash"}
-        </button>
-        {log.length > 0 && (
-            <pre className="mt-2 p-2 bg-slate-900 text-xs max-h-48 overflow-auto rounded">
-          {log.join("\n")}
-        </pre>
-        )}
-      </>
+    <>
+      <button
+        disabled={phase === "preparing"}
+        className="px-4 py-1 rounded bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50"
+        onClick={openDialog}
+      >
+        {phase === "preparing" ? <Spinner /> : "Prepare & Flash"}
+      </button>
+
+      {open && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-10">
+          <div className="bg-slate-800 p-4 rounded w-96">
+            <div className="flex justify-between items-center mb-2">
+              <h2 className="font-bold">Flash {build.version}</h2>
+              <button onClick={closeDialog}>&times;</button>
+            </div>
+
+            {phase === "preparing" && (
+              <div className="flex items-center gap-2"><Spinner /> Preparing…</div>
+            )}
+
+            {phase === "ready" && manifestUrl && (
+              <esp-web-install-button manifest={manifestUrl}>
+                <button className="px-4 py-1 rounded bg-indigo-600 hover:bg-indigo-700">
+                  Connect
+                </button>
+              </esp-web-install-button>
+            )}
+
+            {log.length > 0 && (
+              <pre className="mt-2 p-2 bg-slate-900 text-xs max-h-48 overflow-auto rounded">
+                {log.join("\n")}
+              </pre>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
