@@ -23,7 +23,6 @@ function json(data: unknown, status = 200): Response {
 function unauthorized(): Response {
   return new Response("Unauthorized", {
     status: 401,
-    headers: { "WWW-Authenticate": "Basic" },
   });
 }
 
