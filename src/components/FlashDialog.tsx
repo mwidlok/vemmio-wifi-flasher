@@ -120,7 +120,14 @@ export function FlashDialog({ build }: Props) {
           <div className="bg-white text-slate-900 p-4 rounded w-96">
             <div className="flex justify-between items-center mb-2">
               <h2 className="font-bold">Flash {build.version}</h2>
-              <button onClick={closeDialog}>&times;</button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  closeDialog();
+                }}
+              >
+                &times;
+              </button>
             </div>
 
             {phase === "preparing" && (
