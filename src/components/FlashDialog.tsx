@@ -109,7 +109,7 @@ export function FlashDialog({ build }: Props) {
     <>
       <button
         disabled={phase === "preparing"}
-        className="px-4 py-1 rounded bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50"
+        className="px-5 py-2 rounded-3xl bg-sky-500 hover:bg-sky-400 disabled:opacity-50 text-white"
         onClick={openDialog}
       >
         {phase === "preparing" ? <Spinner /> : "Prepare & Flash"}
@@ -136,10 +136,7 @@ export function FlashDialog({ build }: Props) {
 
             {phase === "ready" && manifestUrl && (
               <esp-web-install-button manifest={manifestUrl}>
-                <button className="px-4 py-1 rounded bg-indigo-600 hover:bg-indigo-700">
-                  Connect
-                </button>
-              </esp-web-install-button>
+                </esp-web-install-button>
             )}
 
             {log.length > 0 && (

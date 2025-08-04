@@ -40,7 +40,7 @@ export default function Login() {
         onChange={(e) => setPass(e.target.value)}
       />
       {err && <p className="text-red-500 text-sm">{err}</p>}
-      <button className="rounded bg-indigo-600 hover:bg-indigo-700 py-2 mt-2" type="submit">
+      <button className="px-5 py-2 rounded-3xl bg-sky-500 hover:bg-sky-400 disabled:opacity-50 text-white" type="submit">
         Zaloguj
       </button>
     </form>
