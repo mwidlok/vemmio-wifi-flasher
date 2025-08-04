@@ -13,6 +13,7 @@ export default function BuildList({ builds }: Props) {
             <tr className="border-b border-gray-300">
                 <th className="py-2">Wersja</th>
                 <th className="py-2">Stage</th>
+                <th className="py-2">Data</th>
                 <th className="py-2" />
             </tr>
             </thead>
@@ -21,6 +22,7 @@ export default function BuildList({ builds }: Props) {
                 <tr key={b.version} className="group border-b border-gray-200">
                     <td className="py-2 font-mono">{b.version}</td>
                     <td className="py-2">{b.stage}</td>
+                    <td className="py-2">{new Date(b.date).toLocaleString('pl-PL')}</td>
                     <td className="py-2 text-right">
                         <div className="invisible group-hover:visible">
                             <FlashDialog build={b} />

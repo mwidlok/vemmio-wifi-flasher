@@ -42,7 +42,7 @@ export default {
       const cmd = new ListObjectsV2Command({ Bucket: BUCKET, Prefix: prefix });
       const res = await client.send(cmd);
 
-      type Group = { zip?: string; manifest?: string };
+      type Group = { zip?: string; manifest?: string; lastModified?: Date };
       const groups: Record<string, Group> = {};
 
       for (const o of res.Contents ?? []) {
@@ -59,7 +59,10 @@ export default {
 
         const g = (groups[version] ??= {});
         if (/manifest\.json$/i.test(filename)) g.manifest = key;
-        else if (/\.zip$/i.test(filename)) g.zip = key;
+        else if (/\.zip$/i.test(filename)) {
+          g.zip = key;
+          g.lastModified = o.LastModified;
+        }
       }
 
       const list = Object.entries(groups)
@@ -68,6 +71,7 @@ export default {
             stage,
             device,
             version,
+            date: g.lastModified!.toISOString(),
             zipUrl: `/api/artifact?key=${encodeURIComponent(g.zip!)}`,
             ...(g.manifest
                 ? { manifestUrl: `/api/artifact?key=${encodeURIComponent(g.manifest)}` }

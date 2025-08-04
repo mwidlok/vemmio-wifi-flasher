@@ -4,6 +4,7 @@ export const BuildSchema = z.object({
   device: z.string(),
   version: z.string(),
   stage: z.string(),
+  date: z.string(),            // ISO timestamp of artifact upload
   zipUrl: z.string(),            // względny URL do artefaktu (proxy Worker)
   manifestUrl: z.string().optional(), // opcjonalny – gdy istnieje zewnętrzny plik .manifest.json
 });
