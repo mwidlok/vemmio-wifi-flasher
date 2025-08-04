@@ -11,21 +11,21 @@ export default function BuildList({ builds }: Props) {
         <table className="w-full text-left mt-4">
             <thead>
             <tr className="border-b border-gray-300">
-                <th className="py-2">Wersja</th>
-                <th className="py-2">Stage</th>
-                <th className="py-2">Data</th>
-                <th className="py-2" />
+                <th className="py-2 w-1/10">Version</th>
+                <th className="py-2 w-1/10">Stage</th>
+                <th className="py-2 whitespace-nowrap w-max">Date</th>
+                <th className="py-2 w-1/10"/>
             </tr>
             </thead>
             <tbody>
             {builds.map((b) => (
                 <tr key={b.version} className="group border-b border-gray-200">
-                    <td className="py-2 font-mono">{b.version}</td>
-                    <td className="py-2">{b.stage}</td>
-                    <td className="py-2">{new Date(b.date).toLocaleString('pl-PL')}</td>
-                    <td className="py-2 text-right">
+                    <td className="py-2 w-1/10 font-mono">{b.version}</td>
+                    <td className="py-2 w-1/10">{b.stage}</td>
+                    <td className="py-2 whitespace-nowrap w-max">{new Date(b.date).toLocaleString('pl-PL')}</td>
+                    <td className="py-2 text-left w-1/10">
                         <div className="invisible group-hover:visible">
-                            <FlashDialog build={b} />
+                            <FlashDialog build={b}/>
                         </div>
                     </td>
                 </tr>

@@ -13,18 +13,18 @@ export default function DropZone() {
       const zip = await JSZip.loadAsync(files[0]);
 
       const mf = zip.file(/manifest\.json$/i)?.[0];
-      if (!mf) throw new Error("Brak manifest.json w ZIP.");
+      if (!mf) throw new Error("No manifest.json in ZIP.");
       const manifest = JSON.parse(await mf.async("string"));
 
       const parts = manifest?.builds?.[0]?.parts;
       if (!Array.isArray(parts) || !parts.length) {
-        throw new Error("Manifest nie zawiera builds[0].parts.");
+        throw new Error("Manifest does not contain builds[0].parts.");
       }
 
       // przygotuj blob:URL-e dla wszystkich plików .bin
       const get = (name: string) => {
         const f = zip.file(new RegExp(`^${name}$`, "i"))[0];
-        if (!f) throw new Error(`Brak ${name} w ZIP.`);
+        if (!f) throw new Error(`No ${name} in ZIP.`);
         return f.async("blob");
       };
       const blobs = {
@@ -44,9 +44,9 @@ export default function DropZone() {
       }
 
       await flash({ manifestString }, setLog);
-      setLog((l) => [...l, "✔ Zakończono"]);
+      setLog((l) => [...l, "✔ Completed"]);
     } catch (err) {
-      setLog((l) => [...l, `❌ Błąd: ${String(err)}`]);
+      setLog((l) => [...l, `❌ Error: ${String(err)}`]);
       console.error(err);
     }
   }, []);
@@ -66,9 +66,9 @@ export default function DropZone() {
       >
         <input {...getInputProps()} />
         {isDragActive ? (
-            <p>Upuść ZIP tutaj…</p>
+            <p>Drop ZIP here…</p>
         ) : (
-            <p>Przeciągnij ZIP z firmware lub kliknij by wybrać.</p>
+            <p>Drag a firmware ZIP here, or click to select.</p>
         )}
         {log.length > 0 && (
             <pre className="mt-4 text-xs max-h-48 overflow-auto bg-gray-200 p-2 rounded">{log.join("\n")}</pre>
