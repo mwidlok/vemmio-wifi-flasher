@@ -135,8 +135,9 @@ export function FlashDialog({ build }: Props) {
             )}
 
             {phase === "ready" && manifestUrl && (
-              <esp-web-install-button manifest={manifestUrl}>
-                </esp-web-install-button>
+              <div className="flex justify-center">
+                <esp-web-install-button manifest={manifestUrl}></esp-web-install-button>
+              </div>
             )}
 
             {log.length > 0 && (
