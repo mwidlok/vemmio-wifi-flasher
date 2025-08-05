@@ -1,0 +1,13 @@
+node_modules
+dist
+build
+/.git
+/.husky
+.gitignore
+Dockerfile*
+docker-compose*.yml
+*.iml
+*.log
+npm-debug.log*
+*.tsbuildinfo
+/*.env*

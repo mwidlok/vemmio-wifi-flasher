@@ -15,6 +15,35 @@ cp .dev.vars.example .dev.vars       # wypełnij klucze DO + hasła
 
 # 3) dwa terminale
 pnpm dev                             # frontend  http://localhost:5173
+
 pnpm wrangler dev worker/index.ts    # API       http://localhost:8787
 
+## Docker Deployment
 
+Build and run the Vemmio Flasher UI as a static Nginx container:
+
+```bash
+# Build the Docker image from the project root:
+docker build -t vemmio-flasher:latest .
+
+# Run the container, exposing port 80 (mapped to host port 8080):
+docker run --rm -p 8080:80 vemmio-flasher:latest
+
+# Then open http://localhost:8080 in your browser.
+```
+
+Alternatively, use Docker Compose for a one‑step build & run:
+
+```bash
+docker-compose up --build
+```
+
+## DigitalOcean Functions Deployment
+
+You can deploy the same API logic to DigitalOcean Functions using the `do-worker` folder:
+
+```bash
+# Install and authenticate doctl: https://docs.digitalocean.com/reference/doctl/
+cd do-worker
+doctl serverless deploy --remote
+```
