@@ -1,0 +1,8 @@
+name: flasher
+runtime: deno
+index: index.ts
+routes:
+  - path: /api/*
+    method: GET
+  - path: /api/*
+    method: POST
