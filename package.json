@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && wrangler deploy",
+    "api": "tsx --env-file=.dev.vars local-api.ts",
+    "build": "vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "deploy:do": "cd do-worker && doctl serverless deploy --remote"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.547.0",
@@ -31,6 +33,6 @@
     "typescript": "^5.5.2",
     "vite": "^7.0.4",
     "vitest": "^3.2.4",
-    "wrangler": "^4.0.0"
+    "tsx": "^4.15.7"
   }
 }
