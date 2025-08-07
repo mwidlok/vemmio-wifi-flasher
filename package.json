@@ -8,6 +8,7 @@
     "api": "tsx --env-file=.dev.vars local-api.ts",
     "build": "vite build",
     "preview": "vite preview",
+    "start": "vite preview --host 0.0.0.0 --port ${PORT:-8080}",
     "test": "vitest",
     "deploy:do": "cd do-worker && doctl serverless deploy --remote"
   },

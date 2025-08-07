@@ -38,6 +38,13 @@ Alternatively, use Docker Compose for a one‑step build & run:
 docker-compose up --build
 ```
 
+## DigitalOcean App Platform Deployment
+
+For App Platform deployments use the following commands:
+
+* Build command: `npm run build`
+* Run command: `npm start` (uses `PORT` provided by App Platform)
+
 ## DigitalOcean Functions Deployment
 
 You can deploy the same API logic to DigitalOcean Functions using the `do-worker` folder or the npm script:
