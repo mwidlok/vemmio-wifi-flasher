@@ -11,4 +11,7 @@ export default defineConfig({
       },
     },
   },
+  preview: {
+    allowedHosts: ["flashwifi.vemmio.cloud"],
+  },
 });
